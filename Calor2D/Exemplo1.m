@@ -6,14 +6,14 @@ clearvars;
 tic
 
 k = 0.2; % condutividade
-fgen = @(x) 0; % função geracao
+fgen = @(x) 0; % funcao geracao
 fbound = @(x) 0; % funcao fluxo
  
 Lx = 1; % dimensoes do dominio
 Ly = 1;
 
-Nx = 101; % numero de nos em cada direcao
-Ny = 101;
+Nx = 51; % numero de nos em cada direcao
+Ny = 51;
 
 xe = bump(0,Lx,Nx,0.5); % coordenadas nodais
 ye = bump(0,Ly,Ny,-0.5);
@@ -98,7 +98,7 @@ figure;
 mesh(xx,yy,UU,'EdgeColor','b','FaceAlpha',0.1);  hold on; view(2);
 % quad_display([],mmesh,xnos',U);
 contourf(xx,yy,UU,[0:0.1:1],'linestyle','-','Showtext','on'); axis equal
-colormap(parula); colorbar;
+colormap(jet); colorbar;
 set(gca(), "fontsize",16);
 xlabel("X");
 ylabel("Y");
