@@ -1,8 +1,14 @@
+function Solucao_analitica(ishow)
 % Solucao do problema de transferencia de calor 2D
 % utiliza separacao de variaveis. Os resultados sao salvos em um
 % arquivo .mat que pode ser lido por outra funcao.
-function Solucao_analitica()
+% a variavel ishow deve ser 1 para ocultar 
+% os graficos na tela
 
+if nargin == 0
+ ishow = 0;
+ end
+ 
 
 L = 1;
 W = 1;
@@ -22,19 +28,22 @@ for n = 1:200
    
 end
 
-figure;
-contourf(x,y,T,0:0.1:1,'ShowText','on');
-colormap(jet); colorbar;
-set(gca(),"fontsize",16)
-xlabel("X")
-ylabel("Y")
-axis square
+if ishow ~= 1
+	figure;
+	contourf(x,y,T,0:0.1:1,'ShowText','on');
+	colormap(jet); colorbar;
+	set(gca(),"fontsize",16)
+	xlabel("X")
+	ylabel("Y")
+    title("Temperatura")
+	axis square
 
-figure;
-plot(y(x==L/2),T(x==L/2),'bo-')
-xlabel("X")
-ylabel("Temperatura")
-set(gca(),"fontsize",16)
-save('Ex1_analitic','x','y','T');
+	figure;
+	plot(y(x==L/2),T(x==L/2),'bo-')
+	xlabel("X")
+	ylabel("Temperatura")
+	set(gca(),"fontsize",16)
+end
+save('Ex1_analitic.mat','x','y','T');
 
 return

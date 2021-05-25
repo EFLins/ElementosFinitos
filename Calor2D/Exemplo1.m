@@ -22,9 +22,6 @@ ye = bump(0,Ly,Ny,-0.5);
 % matrix com as coordenadas x,y
 [xx, yy] = meshgrid(xe,ye); 
 
-% para ver a malha descomente a linha abaixo
-% mesh(xx,yy,ones(size(xx))); view(2); return
-
 % numero de nos total
 nNos = numel(xx);   
        
@@ -94,21 +91,35 @@ toc
 %% pos-processamento
 UU = reshape(U,Nx,Ny)';
 
+% malha 
 figure;
-mesh(xx,yy,UU,'EdgeColor','b','FaceAlpha',0.1);  hold on; view(2);
-% quad_display([],mmesh,xnos',U);
+mesh(xx,yy,zeros(size(xx))); view(2); 
+set(gca(), "fontsize",16);
+xlabel("X");
+ylabel("Y");
+title('Malha utilizada')
+axis square;
+
+% solução
+figure;
 contourf(xx,yy,UU,[0:0.1:1],'linestyle','-','Showtext','on'); axis equal
 colormap(jet); colorbar;
 set(gca(), "fontsize",16);
 xlabel("X");
 ylabel("Y");
+title("Temperatura")
+
 axis square;
 
-
 figure
-sa = load('Ex1_analitic.mat');
+if (~exist('Ex1_analitic','file'))
+  Solucao_analitica(1);
+end
+sa = load('Ex1_analitic');
 plot(yy(xx==Lx/2),UU(xx==Lx/2),'bo-',...
     sa.y(sa.x==Lx/2),sa.T(sa.x==Lx/2),'r-')
 xlabel("X")
 ylabel("Temperatura");
+title("Temperatura ao longo da linha central")
+
 set(gca(), "fontsize",16)
