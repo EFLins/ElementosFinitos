@@ -1,6 +1,8 @@
-clc;
-clear;
-close all;
+% Solucao do problema de transferencia de calor 2D
+% utiliza separacao de variaveis. Os resultados sao salvos em um
+% arquivo .mat que pode ser lido por outra funcao.
+function Solucao_analitica()
+
 
 L = 1;
 W = 1;
@@ -22,7 +24,7 @@ end
 
 figure;
 contourf(x,y,T,0:0.1:1,'ShowText','on');
-colormap(parula); colorbar;
+colormap(jet); colorbar;
 set(gca(),"fontsize",16)
 xlabel("X")
 ylabel("Y")
@@ -34,3 +36,5 @@ xlabel("X")
 ylabel("Temperatura")
 set(gca(),"fontsize",16)
 save('Ex1_analitic','x','y','T');
+
+return

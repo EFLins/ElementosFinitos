@@ -1,4 +1,7 @@
 function res = bound_elem(xy, fbound)
+% Calcula o vetor fluxo elementar do problema de transferencia de calor
+% em um dominio 2D. Funcoes de interpolacao lineares sao utilizadas
+% juntamente com integracao de Gauss Legendre
 
 [x, w] = GL_weights(2);
 

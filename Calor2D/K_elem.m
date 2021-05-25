@@ -1,4 +1,7 @@
 function res = K_elem(xy)
+% Calcula as matrizes elementares do problema de transferencia de calor
+% em um dominio 2D. Funcoes de interpolacao bilineares sao utilizadas
+% juntamente com integracao de Gauss Legendre
 
 % carrega os pontos e abcissas da integracao de Gauss
 [x, w] = GL_weights(2);

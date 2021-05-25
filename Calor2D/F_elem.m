@@ -1,4 +1,8 @@
 function res = F_elem(xy, fgen)
+% Calcula o vetor elementar do problema de transferencia de calor
+% em um dominio 2D. Funcoes de interpolacao bilineares sao utilizadas
+% juntamente com integracao de Gauss Legendre
+
 
 [x, w] = GL_weights(2);
 
