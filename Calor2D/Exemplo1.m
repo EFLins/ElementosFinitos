@@ -12,8 +12,8 @@ fbound = @(x) 0; % funcao fluxo
 Lx = 1; % dimensoes do dominio
 Ly = 1;
 
-Nx = 51; % numero de nos em cada direcao
-Ny = 51;
+Nx = 7; % numero de nos em cada direcao
+Ny = 7;
 
 xe = bump(0,Lx,Nx,0.5); % coordenadas nodais
 ye = bump(0,Ly,Ny,-0.5);
@@ -25,12 +25,12 @@ ye = bump(0,Ly,Ny,-0.5);
 % numero de nos total
 nNos = numel(xx);   
        
-% cria uma lista contendo as coordenadas dos nÃ³s em duas colunas [x y]
+% cria uma lista contendo as coordenadas dos nos em duas colunas [x y]
 xnos = [reshape(xx',nNos,1) reshape(yy',nNos,1)]; 
 %xnos = xnos+0.02*(rand(size(xnos))-0.5); 
 
 % cria a matriz de malha, onde cada entrada representa um noh
-mm = reshape(1:nNos,numel(xe),numel(ye))'; 
+mm = reshape(1:nNos,Nx,Ny)';
 
 % aqui ficara a estrutura da malha, cada linha contem os nos do elemento em sentido horÃ¡rio 
 mmesh = [];
@@ -53,6 +53,7 @@ K = zeros(nNos,nNos);
 %obtem os nos no contorno
 u_def = unique([mm(:,1); mm(:,end); mm(end,:)'; mm(1,:)']);
 
+% nos com variavel derivada definidos
 du_def = [];
 
 % define os valores para esses nos
@@ -77,7 +78,7 @@ end
 for ic = 1:numel(du_def)-1
   eGl = du_def([ic ic+1]);
   xy  = xnos(eGl,:);
-  flocal = bound_elem(xy,fbound);
+  flocal = boundary_elem(xy,fbound);
   F(eGl) = F(eGl) + flocal;
 end
 
